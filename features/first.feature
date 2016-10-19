@@ -3,7 +3,8 @@ Feature: Buy a game in Steam market
     I can buy a game in Steam market.
 
 Scenario: Buy F1 2016 game
-    Given I am on the 'http://store.steampowered.com/' page
-    When I will input 'F1 2016' in the search field
-    Then I will go to the market page of this game
-    Then I will add it to cart
+    Given I am on the market page
+    When I will input game in the search field
+    #Then I will go to the market page of this game
+    #Then I will add it to cart
+    Then I will wait a bit
