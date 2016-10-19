@@ -1,4 +1,4 @@
-var steamStore = {
+steamStore = {
 	get: function() {
 		return browser.get('http://store.steampowered.com/');
 	},

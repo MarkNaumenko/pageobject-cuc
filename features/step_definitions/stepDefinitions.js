@@ -1,4 +1,4 @@
-var steamStore = require('./steamStore.js');
+var steamStore = require('../support/steamStore.js');
 
 var steps = function() {
 
@@ -13,9 +13,10 @@ var steps = function() {
     	return steamStore.searchGame('F1 2016');
     });
     
-    this.Then(/^Then I will wait a bit$/, function() {
-        steamStore.wait(10000);
+    this.Then(/^I will wait a bit$/, function() {
+        return steamStore.sleep(4000);
     });   
+
 };
 
 module.exports = steps;
