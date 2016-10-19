@@ -3,8 +3,6 @@ exports.config = {
 
   getPageTimeout: 15000,
 
-  setDefaultTimeout: 60000,
-
   framework: 'custom',
 
   // path relative to the current config file
@@ -15,11 +13,11 @@ exports.config = {
 
   // Spec patterns are relative to this directory.
   specs: [
-    'features/*.feature'
+    'tests/features/*.feature'
   ],
 
   cucumberOpts: {
-    require: 'features/step_definitions/stepDefinitions.js'
+    require: 'tests/step_definitions/*.js'
   }
 
 };
