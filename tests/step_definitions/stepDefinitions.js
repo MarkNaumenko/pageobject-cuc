@@ -13,6 +13,17 @@ var steps = function() {
     	return steamStore.searchGame('F1 2016');
     });
     
+    this.Then(/^I will go to the market page of this game$/, function() {
+        EC = protractor.ExpectedConditions;
+        return browser.wait(EC.visibilityOf(by.xpath('(.//*[contains(text(),"F1 2016")])[1]')),15000)
+        .then(function() {
+            browser.element(by.xpath('(.//*[contains(text(),"F1 2016")])[1]')).click();
+        });
+
+        
+
+    });
+
     this.Then(/^I will wait a bit$/, function() {
         return browser.sleep(4000);
     });   
