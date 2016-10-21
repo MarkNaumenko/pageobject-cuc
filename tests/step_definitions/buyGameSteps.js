@@ -1,3 +1,4 @@
+'use strict';
 var steamStore = require('../support/pages/steamStore.js');
 
 var steps = function() {
@@ -38,10 +39,9 @@ var steps = function() {
     });
 
     this.Then(/^check '([^"]*)' feature$/, function(tag) {
-        element(by.xpath('.//a[text()="' + tag + '"]')).isDisplayed()
-        .then(function(gameFeature){
-            return expect(gameFeature).to.be(false); //fix expect chai
-        });
+        
+            return expect(element(by.xpath('.//a[text()="' + tag + '"]')).isDisplayed()).to.be.equal(true); //fix expect chai
+        
     });
 
 };
