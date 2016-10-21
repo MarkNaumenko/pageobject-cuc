@@ -39,11 +39,11 @@ var steps = function() {
     });
 
     this.Then(/^check '([^"]*)' feature$/, function(tag) {
-        
-            return expect(element(by.xpath('.//a[text()="' + tag + '"]')).isDisplayed()).to.be.equal(true); //fix expect chai
-        
+        return element(by.xpath('.//a[text()="' + tag + '"]')).getText()
+        .then(function(qwe) {
+            expect(qwe).to.be.deep.equal(tag); //fix expect chai    
+        });
     });
-
 };
 
 module.exports = steps;
