@@ -1,23 +1,17 @@
-// var steamStore = require('../support/pages/steamStore.js');
+var steamStore = require('../support/pages/steamStore.js');
 
-// var steps = function() {
+var steps = function() {
 
-//     this.setDefaultTimeout(60000);
-//     browser.ignoreSynchronization = true;
+    this.setDefaultTimeout(60000);
+    browser.ignoreSynchronization = true;
+    
+    this.Then(/^check '([^"]*)' feature$/, function(tag) {
+        return element(by.xpath('.//a[text()="' + tag + '"]')).getText()
+        .then(function(qwe) {
+            expect(qwe).to.be.deep.equal(tag); //fix expect chai    
+        });
+    });
 
+};
 
-//     this.Then(/^I will wait a bit$/, function() {
-//         return browser.sleep(5000);
-//     });   
-
-//     this.Then(/^I will add game to the cart$/, function() {
-//         return steamStore.addGameToCart();
-//     });
-
-//     this.Then(/^purchase game for my self$/, function() {
-//         return steamStore.getButtonBuyForMySelf().click();
-//     });
-
-// };
-
-// module.exports = steps;
+module.exports = steps;

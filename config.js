@@ -20,7 +20,8 @@ exports.config = {
   ],
 
   cucumberOpts: {
-    require: 'tests/step_definitions/*.js'
+    require: 'tests/step_definitions/*.js',
+    format: 'pretty'
   },
 
   onPrepare : function() {

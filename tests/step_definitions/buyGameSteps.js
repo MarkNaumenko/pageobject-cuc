@@ -18,16 +18,16 @@ var steps = function() {
     	return steamStore.searchGame(gameName);
     });
     
-    this.Then(/^I will go to the page of this game$/, function() {
+    this.Then(/^I will go to the page of this '([^"]*)' game$/, function(gameName) {
         var EC = protractor.ExpectedConditions;
-        return browser.wait(EC.visibilityOf(element(by.xpath('.//*[text() = "F1 2016"]'))), 5000)
+        return browser.wait(EC.visibilityOf(element(by.xpath('.//*[text() = "' + gameName + '"]'))), 5000)
         .then(function(){
-            browser.element(by.xpath('.//*[text() = "F1 2016"]')).click();    
+            browser.element(by.xpath('.//*[text() = "' + gameName + '"]')).click();    
         });
     });
 
     this.Then(/^I will wait a bit$/, function() {
-        return browser.sleep(5000);
+        return browser.sleep(1000)
     });   
 
     this.Then(/^I will add game to the cart$/, function() {
@@ -38,12 +38,6 @@ var steps = function() {
         return steamStore.getButtonBuyForMySelf().click();
     });
 
-    this.Then(/^check '([^"]*)' feature$/, function(tag) {
-        return element(by.xpath('.//a[text()="' + tag + '"]')).getText()
-        .then(function(qwe) {
-            expect(qwe).to.be.deep.equal(tag); //fix expect chai    
-        });
-    });
 };
 
 module.exports = steps;

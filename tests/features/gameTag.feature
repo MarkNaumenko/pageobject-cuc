@@ -1,10 +1,16 @@
 Feature: Multiplayer feature
     As a user
     I want F1 2016 has multiplayer feature
-    
-Scenario: Check F1 2016 has multiplayer
-    Given I am on the market page
-    When I will input 'F1 2016' in the search field
-    Then I will go to the page of this game
-    Then check 'Multi-player' feature
-    Then I will wait a bit
+
+	@important
+	Scenario Outline: Check <game> has multiplayer
+    	Given I am on the market page
+    	When I will input '<game>' in the search field
+    	Then I will go to the page of this '<game>' game
+    	Then check '<game-tag>' feature
+    	Then I will wait a bit
+
+		Examples:
+    		| game    | game-tag     |
+    		| F1 2016 | Multi-player |
+    		| F1 2015 | Multi-player |
