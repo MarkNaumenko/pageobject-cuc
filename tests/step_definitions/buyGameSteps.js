@@ -38,6 +38,10 @@ var steps = function() {
         return steamStore.getButtonBuyForMySelf().click();
     });
 
+    this.Then(/^take screenshot$/, function() {
+        return steamStore.takeSteamScreenshot();
+    });
+
 };
 
 module.exports = steps;

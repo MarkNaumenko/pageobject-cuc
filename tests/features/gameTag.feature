@@ -9,6 +9,7 @@ Feature: Multiplayer feature
     	Then I will go to the page of this '<game>' game
     	Then check '<game-tag>' feature
     	Then I will wait a bit
+        Then take screenshot
 
 		Examples:
     		| game    | game-tag     |

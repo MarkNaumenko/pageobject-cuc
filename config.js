@@ -1,27 +1,35 @@
 exports.config = {
-  seleniumAddress: 'http://localhost:4444/wd/hub',
-
+  
   getPageTimeout: 15000,
 
   framework: 'custom',
 
   // path relative to the current config file
   frameworkPath: require.resolve('protractor-cucumber-framework'),
-  capabilities: {
-    browserName: 'chrome',
-    chromeOptions : {
-      args: ['start-maximized','--disable-extensions']
-    }
-  },
 
-  // Spec patterns are relative to this directory.
+  multiCapabilities: [
+  {'browserName': 'chrome',
+   chromeOptions : {
+            args: ['start-maximized','--disable-extensions']
+        },
   specs: [
-    'tests/features/*.feature'
+    'tests/features/gameTag.feature'
   ],
+  }, 
+  {'browserName': 'chrome',
+   chromeOptions : {
+            args: ['start-maximized','--disable-extensions']
+        },
+  specs: [
+    'tests/features/buyGame.feature'
+  ],
+
+  }],
 
   cucumberOpts: {
     require: 'tests/step_definitions/*.js',
-    format: 'pretty'
+    format: 'pretty',
+    tags: '@important'
   },
 
   onPrepare : function() {
