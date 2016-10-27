@@ -20,7 +20,11 @@ var steamMain = {
 		});
 	},
 	takeSteamScreenshot: function() {
-		var fs = require('fs');
+		var fs = require('fs'),
+			dir = './screenshots';
+		if (!fs.existsSync(dir)){
+    		fs.mkdirSync(dir);
+		};
         function writeScreenShot(data, filename) {
             var stream = fs.createWriteStream(filename);
         	stream.write(new Buffer(data, 'base64'));
