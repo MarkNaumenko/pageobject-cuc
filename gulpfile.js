@@ -12,10 +12,10 @@ var view = require('./tests/profile/view');
 
 
 gulp.task('test',function(){
-    var execute = function(browser, view, tag){
+    var execute = function(browser, view, tags){
         process.env.BROWSER = browser;
         process.env.VIEW = view;
-        process.env.TAGS = tag;
+        process.env.TAGS = tags;
         return exec('gulp protractor')
             .then(function (results) {
                 console.log(results.stdout);
@@ -24,7 +24,7 @@ gulp.task('test',function(){
                 console.error('ERROR: ',err.stdout);
             });
     };
-    return execute(util.env.browser, util.env.view, util.env.tag);
+    return execute(util.env.browser, util.env.view, util.env.tags);
 });
 
 gulp.task('protractor', function() {
