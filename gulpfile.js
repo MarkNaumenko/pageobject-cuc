@@ -2,29 +2,24 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     protractor = require('gulp-protractor').protractor,
     util = require('gulp-util'),
-    exec = require('child-process-promise').exec;
+    exec = require('child-process-promise').exec,
+    view = require('./tests/profile/view'),
+    capabilities = require('./tests/profile/capabilities');
 
 //gulp test --browser=chrome --view=mobile --tags=@important
 
-var view = require('./tests/profile/view');
-    capabilities = require('./tests/profile/capabilities');
-
-
-
 gulp.task('test',function(){
-    var execute = function(browser, view, tags){
-        process.env.BROWSER = browser;
-        process.env.VIEW = view;
-        process.env.TAGS = tags;
-        return exec('gulp protractor')
-            .then(function (results) {
-                console.log(results.stdout);
-            })
-            .catch(function (err) {
-                console.error('ERROR: ',err.stdout);
-            });
-    };
-    return execute(util.env.browser, util.env.view, util.env.tags);
+    process.env.BROWSER = util.env.browser || 'chrome';
+    process.env.VIEW = util.env.view || 'desktop';
+    process.env.TAGS = util.env.tags || '@important';
+
+    return exec('gulp protractor')
+        .then(function (results) {
+            console.log(results.stdout);
+        })
+        .catch(function (err) {
+            console.error('ERROR: ',err.stdout);
+        });
 });
 
 gulp.task('protractor', function() {
