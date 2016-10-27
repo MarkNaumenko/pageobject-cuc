@@ -13,6 +13,6 @@ var steamStore = {
 	}
 };
 
-steamStore = inherit(steamMain, steamStore);
+inherit(steamMain, steamStore);
 
 module.exports = steamStore;

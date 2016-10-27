@@ -20,7 +20,7 @@ var steps = function() {
     
     this.Then(/^I will go to the page of this '([^"]*)' game$/, function(gameName) {
         var EC = protractor.ExpectedConditions;
-        return browser.wait(EC.visibilityOf(element(by.xpath('.//*[text() = "' + gameName + '"]'))), 5000)
+        return browser.wait(EC.visibilityOf(element(by.xpath('.//*[text() = "' + gameName + '"]'))), 10000)
         .then(function(){
             browser.element(by.xpath('.//*[text() = "' + gameName + '"]')).click();    
         });
