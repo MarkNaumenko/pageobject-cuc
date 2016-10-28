@@ -6,10 +6,11 @@ var steps = function() {
     browser.ignoreSynchronization = true;
     
     this.Then(/^check '([^"]*)' feature$/, function(tag) {
-        return element(by.xpath('.//a[text()="' + tag + '"]')).getText()
-        .then(function(qwe) {
-            expect(qwe).to.be.deep.equal(tag); //fix expect chai    
-        });
+        return element(by.xpath('.//img[contains(@src,"multiPlayer")]')).isPresent();
+        // .then(function(qwe) {
+        //     expect(qwe).to.be.deep.equal(tag);
+        //was chai comporation with text, now only img src
+        // });
     });
 
 };
