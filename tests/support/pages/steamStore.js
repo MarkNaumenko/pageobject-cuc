@@ -1,6 +1,6 @@
 var user = require('./../user'),
-	steamMain = require('./steamMain.js'),
-	inherit = require('./../extendDeep.js');
+	steamMain = require('./steamMain.js');
+	
 var steamStore = {
 	searchGame: function(input) {
 		return browser.element(by.id('store_nav_search_term')).sendKeys(input);
@@ -13,6 +13,6 @@ var steamStore = {
 	}
 };
 
-inherit(steamMain, steamStore);
+Object.assign(steamStore, steamMain);
 
 module.exports = steamStore;

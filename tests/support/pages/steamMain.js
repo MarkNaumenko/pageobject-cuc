@@ -5,7 +5,7 @@ var steamMain = {
 		return browser.get('http://store.steampowered.com/');
 	},
 	steamLogin: function() {
-		return browser.element(by.css('.global_action_link')).click()
+		return browser.element(by.xpath('(.//*[@id="content_login"]//span[last()])[last()]')).click()
 		.then(function() {
 			browser.element(by.id('input_username')).sendKeys(user.login);
 		})
@@ -13,7 +13,7 @@ var steamMain = {
 			browser.element(by.id('input_password')).sendKeys(user.password);	
 		})
 		.then(function() {
-			browser.element(by.css('.btnv6_blue_hoverfade.btn_medium')).click();
+			browser.element(by.xpath('.//*[@id="login_btn_signin"]/button')).click();
 		})
 		.then(function() {
 			browser.sleep(5000);

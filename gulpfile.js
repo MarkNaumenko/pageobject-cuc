@@ -22,6 +22,16 @@ gulp.task('test',function(){
         });
 });
 
+gulp.task('test-multi',function(){
+    return exec('gulp protractor-multi')
+        .then(function (results) {
+            console.log(results.stdout);
+        })
+        .catch(function (err) {
+            console.error('ERROR: ',err.stdout);
+        });
+});
+
 gulp.task('protractor', function() {
 
     switch(process.env.VIEW) {
@@ -45,6 +55,15 @@ gulp.task('protractor', function() {
         .pipe(
             protractor({
                 'configFile': "config.js"
+            })
+        );
+});
+
+gulp.task('protractor-multi', function() {
+    return gulp.src(['./*/*.js'])
+        .pipe(
+            protractor({
+                'configFile': "config-multi.js"
             })
         );
 });
