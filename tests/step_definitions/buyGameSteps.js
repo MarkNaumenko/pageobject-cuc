@@ -3,9 +3,6 @@ var steamStore = require('../support/pages/steamStore.js');
 
 var steps = function() {
 
-    this.setDefaultTimeout(60000);
-    browser.ignoreSynchronization = true;
-
     this.Given(/^I am on the market page$/, function () {
     	return steamStore.getPage();
     });

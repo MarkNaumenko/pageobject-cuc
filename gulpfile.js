@@ -3,8 +3,7 @@ var gulp = require('gulp'),
     protractor = require('gulp-protractor').protractor,
     util = require('gulp-util'),
     exec = require('child-process-promise').exec,
-    view = require('./tests/profile/view'),
-    capabilities = require('./tests/profile/capabilities');
+    view = require('./tests/profile/view');
 
 //gulp test --browser=chrome --view=mobile --tags=@important
 

@@ -2,9 +2,6 @@ var steamStore = require('../support/pages/steamStore.js');
 
 var steps = function() {
 
-    this.setDefaultTimeout(60000);
-    browser.ignoreSynchronization = true;
-    
     this.Then(/^check '([^"]*)' feature$/, function(tag) {
         return element(by.xpath('.//img[contains(@src,"multiPlayer")]')).isPresent();
         // .then(function(qwe) {
