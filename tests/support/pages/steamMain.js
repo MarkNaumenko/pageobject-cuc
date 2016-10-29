@@ -1,4 +1,5 @@
-var user = require('./../user');
+var user = require('./../user'),
+	path = require('path');
 
 var steamMain = {
 	getPage: function() {
@@ -21,19 +22,26 @@ var steamMain = {
 	},
 	takeSteamScreenshot: function() {
 		var fs = require('fs'),
-			dir = './screenshots';
+			dir = path.resolve('./screenshots');
 		if (!fs.existsSync(dir)){
     		fs.mkdirSync(dir);
 		};
         function writeScreenShot(data, filename) {
             var stream = fs.createWriteStream(filename);
-        	stream.write(new Buffer(data, 'base64'));
-            stream.end();
+            stream.on('open', function(fd) {
+        		stream.write(new Buffer(data, 'base64'));
+            	stream.end();
+            });
         }
-        return browser.takeScreenshot().then(function (png) {
-            var currentdate = new Date();
-            writeScreenShot(png, './screenshots/shot_' + currentdate.toLocaleTimeString() + '.png');
-        });
+        return browser.takeScreenshot().then(function(png) {
+            	var currentdate = new Date(),
+            		pathname = './screenshots/shot_' + currentdate.toLocaleTimeString() + '.png',
+					file = path.resolve(pathname);
+    			fs.writeFileSync(file, png, { encoding: 'base64' }, console.log);
+  			});
+
+            //writeScreenShot(png, '.\\screenshots\\shot_' + currentdate.toLocaleTimeString() + '.png');
+
 	}
 };
 
